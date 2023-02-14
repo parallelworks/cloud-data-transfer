@@ -15,5 +15,9 @@ unzip -u awscliv2.zip
 # Install
 ./aws/install -i $HOME/aws-cli -b $HOME/bin
 
+# Clean up (downloaded/decompressed files)
+rm -rf ./aws
+rm -f awscliv2.zip
+
 echo Done installing AWS CLI!
 
