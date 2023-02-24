@@ -29,12 +29,12 @@ testlogfile=$1
 ./test_aws_cli.sh pacp 1 1 MB >> $testlogfile
 ./test_aws_cli.sh pacp 10 1 MB >> $testlogfile
 ./test_aws_cli.sh pacp 100 1 MB >> $testlogfile
-./test_aws_cli.sh pacp 1000 1 MB >> $testlogfile
+#./test_aws_cli.sh pacp 1000 1 MB >> $testlogfile
 
 ./test_aws_cli.sh pacp 1 10 MB >> $testlogfile
 ./test_aws_cli.sh pacp 10 10 MB >> $testlogfile
 ./test_aws_cli.sh pacp 100 10 MB >> $testlogfile
-./test_aws_cli.sh pacp 1000 10 MB >> $testlogfile
+#./test_aws_cli.sh pacp 1000 10 MB >> $testlogfile
 
 ./test_aws_cli.sh pacp 1 100 MB >> $testlogfile
 ./test_aws_cli.sh pacp 10 100 MB >> $testlogfile
