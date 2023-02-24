@@ -45,4 +45,4 @@ or similar information in `~/.aws/credentials`.
 
 ## Azure
 
-
+## Others
