@@ -120,5 +120,5 @@ fi
 #echo Done
 #=============================================
 rm -rf ${sync_dir}*
-echo $aws_sync $num_files $file_size $size_unit SZ_MB $dir_size_MB UL_S_R $ul_s $ul_r DL_S_R $dl_s $dl_r RM_S_R $rm_s $rm_r
+echo $aws_sync $num_files $file_size $size_unit SZ_MB $dir_size_mb UL_S_R $ul_s $ul_r DL_S_R $dl_s $dl_r RM_S_R $rm_s $rm_r
 
