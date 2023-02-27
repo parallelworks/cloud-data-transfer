@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Plotting files
+gmt.history
+
+# EMACS backup files
+*~
