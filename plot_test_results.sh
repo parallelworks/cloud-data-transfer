@@ -8,12 +8,24 @@
 infile=$1
 
 # Set test type
-test_type="sync"
+# (sync -> using aws sync)
+# (pacp -> explicit parallel copy)
+test_type=$2
 
 # Grab data
-grep sync $infile > tmp.raw
+grep $test_type $infile > tmp.raw
+
+# Plot simple data transfer rates (MB/s)
 awk '{print $2, $3, $9}' tmp.raw > tmp.ul.xyz
 awk '{print $2, $3, $12}' tmp.raw > tmp.dl.xyz
+
+# Normalize transfer rate (MB/s) by total amount of MB transfered
+# (Skipped because these tests are currently run on a single node.
+# Normalization may be worth exploring for multi-node benchmarks
+# Also, for this case, set a lower limit on the color bar, 0.1
+# instead of 1 in makecpt, below.)
+#awk '{print $2, $3, $9/$6}' tmp.raw > tmp.ul.xyz
+#awk '{print $2, $3, $12/$6}' tmp.raw > tmp.dl.xyz
 
 # Set domain
 # (Could do this automatically...)
@@ -40,7 +52,7 @@ gmt pscontour tmp.ul.xyz -R -Ctmp.cpt -J -P -O -K -Wthick,black >> tmp.ps
 gmt psxy tmp.ul.xyz -R -J -P -O -K -Sc0.1 -Gblack -Wblack >> tmp.ps
 
 # Plot DL speeds
-gmt psbasemap $rflag -JX3il/3il -Bxa1 -Bya1+l"Size of each file [MB]" -BWeSn -P -O -K -Y0i -X4i >> tmp.ps
+gmt psbasemap $rflag -JX3il/3il -Bxa1+l"Number of files" -Bya1 -BWeSn -P -O -K -Y0i -X4i >> tmp.ps
 gmt pscontour tmp.dl.xyz -R -I -Ctmp.cpt -J -P -O -K >> tmp.ps
 gmt pscontour tmp.dl.xyz -R -Ctmp.cpt -J -P -O -K -Wthick,black >> tmp.ps
 gmt psxy tmp.dl.xyz -R -J -P -O -K -Sc0.1 -Gblack -Wblack >> tmp.ps
@@ -55,4 +67,4 @@ rm -f tmp.ul.xyz
 rm -f tmp.dl.xyz
 ps2pdf tmp.ps
 rm -f tmp.ps
-mv tmp.pdf ${infile}.pdf
+mv tmp.pdf ${infile}.${test_type}.pdf
