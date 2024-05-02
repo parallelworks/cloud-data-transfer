@@ -40,7 +40,7 @@ bflag="-B"a100g10/a100g10WsEn
 # Interpolate
 
 # Make colortable
-gmt makecpt -T1/200/25 -Cno_green > tmp.cpt
+gmt makecpt -T1/600/50 -Cno_green > tmp.cpt
 
 # Plot UL speeds
 
@@ -49,13 +49,13 @@ gmt makecpt -T1/200/25 -Cno_green > tmp.cpt
 gmt psbasemap $rflag -JX3il/3il -Bxa1+l"Number of files" -Bya1+l"Size of each file [MB]" -BWeSn -P -K -Y2i > tmp.ps
 gmt pscontour tmp.ul.xyz -R -I -Ctmp.cpt -J -P -O -K >> tmp.ps
 gmt pscontour tmp.ul.xyz -R -Ctmp.cpt -J -P -O -K -Wthick,black >> tmp.ps
-gmt psxy tmp.ul.xyz -R -J -P -O -K -Sc0.1 -Gblack -Wblack >> tmp.ps
+gmt psxy tmp.ul.xyz -R -J -P -O -K -Sc0.3 -Gblack -Wblack >> tmp.ps
 
 # Plot DL speeds
 gmt psbasemap $rflag -JX3il/3il -Bxa1+l"Number of files" -Bya1 -BWeSn -P -O -K -Y0i -X4i >> tmp.ps
 gmt pscontour tmp.dl.xyz -R -I -Ctmp.cpt -J -P -O -K >> tmp.ps
 gmt pscontour tmp.dl.xyz -R -Ctmp.cpt -J -P -O -K -Wthick,black >> tmp.ps
-gmt psxy tmp.dl.xyz -R -J -P -O -K -Sc0.1 -Gblack -Wblack >> tmp.ps
+gmt psxy tmp.dl.xyz -R -J -P -O -K -Sc0.3 -Gblack -Wblack >> tmp.ps
 
 # Plot colorbar
 gmt psscale -Dx-4i/-1i+w7i/0.25i+e+h -Ctmp.cpt -Ba1+l"Upload or download data transfer rate [MB/s]" -Q -P -O -K >> tmp.ps
